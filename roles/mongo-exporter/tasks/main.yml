@@ -1,0 +1,36 @@
+---
+- name: ensure mongoexporters directory exist
+  file:
+    path: "{{ mongo_exporter_install_dir }}"
+    state: directory
+
+- name: create mongo-exporter folder
+  file:
+    path: "{{ mongo_exporter_install_dir }}"
+    state: directory
+
+- name: unarchive Mongo Exporter
+  unarchive:
+    remote_src: yes
+    dest: "{{ mongo_exporter_install_dir }}"
+    src: "{{ mongo_exporter_url }}"
+
+- name: copy mongo_exporter binary
+  copy:
+    src: "{{ mongo_exporter_binary }}"
+    dest: "{{ mongo_exporter_exec }}"
+    remote_src: yes
+    mode: 0755
+
+- name: create systemd script
+  template:
+    src: mongodb_exporter.service.j2
+    dest: /etc/systemd/system/mongodb_exporter.service
+  notify: restart mongodb exporter
+
+
+- name: make sure mongodb Exporter is started
+  service:
+    name: mongodb_exporter
+    state: started
+    enabled: yes

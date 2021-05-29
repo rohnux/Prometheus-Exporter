@@ -1,0 +1,11 @@
+[Unit]
+Description=MongoDB Exporter
+
+[Service]
+Type=simple
+Restart=always
+Environment="MONGODB_URI={{ mongo_exporter_mongo_addr }}"
+ExecStart={{ mongo_exporter_exec }} \
+
+[Install]
+WantedBy=multi-user.target
