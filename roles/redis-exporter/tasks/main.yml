@@ -1,0 +1,36 @@
+---
+- name: ensure redisexporters directory exist
+  file:
+    path: "{{ redis_exporter_install_dir }}"
+    state: directory
+
+- name: create redis-exporter folder
+  file:
+    path: "{{ redis_exporter_install_dir }}"
+    state: directory
+
+- name: unarchive Redis Exporter
+  unarchive:
+    remote_src: yes
+    dest: "{{ redis_exporter_install_dir }}"
+    src: "{{ redis_exporter_url }}"
+
+- name: copy redis_exporter binary
+  copy:
+    src: "{{ redis_exporter_binary }}"
+    dest: "{{ redis_exporter_exec }}"
+    remote_src: yes
+    mode: 0755
+
+- name: create systemd script
+  template:
+    src: redis_exporter.service.j2
+    dest: /etc/systemd/system/redis_exporter.service
+  notify: restart redis exporter
+
+
+- name: make sure Redis Exporter is started
+  service:
+    name: redis_exporter
+    state: started
+    enabled: yes
