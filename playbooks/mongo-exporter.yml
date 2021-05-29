@@ -1,0 +1,6 @@
+- hosts: mongo-exporter
+  roles:
+    - { role: roles/mongo-exporter, tags: ["mongo-exporter"] }
+  #  - { role: roles/syslog, tags: ["syslog"] }
+  #    - { role: zabbix_user_parameter, tags: ["mongo_zabbix"]}
+  become: True

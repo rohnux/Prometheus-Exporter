@@ -1,0 +1,12 @@
+---
+mongo_exporter_install_dir: "/opt/mongo-exporter"
+mongo_exporter_version: "0.20.5"
+mongo_exporter_name: "mongodb_exporter-{{ mongo_exporter_version }}.linux-amd64"
+mongo_exporter_url: "https://github.com/percona/mongodb_exporter/releases/download/v{{ mongo_exporter_version }}/mongodb_exporter-{{ mongo_exporter_version }}.linux-amd64.tar.gz"
+mongo_exporter_binary: "{{ mongo_exporter_install_dir }}/{{ mongo_exporter_name }}/mongodb_exporter"
+mongo_exporter_exec: "/usr/bin/mongodb_exporter"
+mongo_exporter_mongo_user: "MONITORING-USER"
+mongo_exporter_mongo_password: "#################"
+mongo_exporter_mongo_addr: "mongodb://{{ mongo_exporter_mongo_user }}:{{ mongo_exporter_mongo_password }}@{{ ansible_ssh_host }}:27017/admin"
+mongo_exporter_web_listen_address: ":9216"
+#mongo_exporter_web_telemetry_path: "/metrics"

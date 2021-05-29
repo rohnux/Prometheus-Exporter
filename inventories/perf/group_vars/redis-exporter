@@ -1,0 +1,11 @@
+---
+redis_exporter_install_dir: "/opt/redis-exporter"
+redis_exporter_version: "1.23.1"
+redis_exporter_name: "redis_exporter-v{{ redis_exporter_version }}.linux-amd64"
+redis_exporter_url: "https://github.com/oliver006/redis_exporter/releases/download/v{{ redis_exporter_version }}/{{ redis_exporter_name }}.tar.gz"
+redis_exporter_binary: "{{ redis_exporter_install_dir }}/{{ redis_exporter_name }}/redis_exporter"
+redis_exporter_exec: "/usr/bin/redis_exporter"
+redis_exporter_redis_addr: "redis://{{ ansible_ssh_host }}:6379"
+redis_exporter_redis_password: "###########################"
+redis_exporter_web_listen_address: ":9121"
+#redis_exporter_web_telemetry_path: "/metrics"
