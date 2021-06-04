@@ -1,7 +1,6 @@
 
 
-#####
-Create user in MongoDB for authentication for the MongoDB exporter:
+### Create user in MongoDB for authentication for the MongoDB exporter:
 
 db.createUser(
   {
