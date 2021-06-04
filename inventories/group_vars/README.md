@@ -14,3 +14,7 @@ db.createUser(
   }
 )
 ```
+### MongoDB Connection String for MongoDB exporter
+```
+mongo_exporter_mongo_addr: "mongodb://MONITORING-USER:###############@{{ ansible_ssh_host }}:27017/admin"
+```
