@@ -2,6 +2,7 @@
 
 ### Create user in MongoDB for authentication for the MongoDB exporter:
 
+```
 db.createUser(
   {
     user: "MONITORING-USER",
@@ -12,3 +13,4 @@ db.createUser(
     ]
   }
 )
+```
